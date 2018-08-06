@@ -32,6 +32,7 @@
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^12.0.0",
     "postcss-loader": "^2.1.6",
+    "react-scripts": "^1.1.4",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.16.4",
@@ -41,6 +42,6 @@
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode development",
     "build-prod": "webpack -p",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "react-scripts test"
   }
 }
