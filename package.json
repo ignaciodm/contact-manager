@@ -1,0 +1,15 @@
+{
+  "name": "contact-manager",
+  "version": "0.0.1",
+  "description": "react/redux version of contact manager",
+  "dependencies": {
+    "bootstrap": "^3.1.1",
+    "backbone": "^1.1.0",
+    "jquery": "^2.1.0",
+    "underscore": "^1.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
