@@ -1,17 +1,13 @@
 import React from 'react';
-import HelloWorld from '../components/HelloWorld';
+import Header from '../components/Header';
+import MainSection from '../components/MainSection';
 
-const App = props => <div>
-  <HelloWorld name={props.name} />
-</div>
 
-//
-// App.propTypes = {
-//   name: PropTypes.string.isRequired
-// }
-//
-// App.defaultProps = {
-//   name: 'Nacho'
-// }
+const App = () => (
+  <div>
+    <Header />
+    <MainSection />
+  </div>
+)
 
-export default App;
+export default App
