@@ -2,6 +2,10 @@
   "name": "contact-manager",
   "version": "0.0.1",
   "description": "react/redux version of contact manager",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ignaciodm/contact-manager.git"
+  },
   "dependencies": {
     "backbone": "^1.1.0",
     "bootstrap": "^3.1.1",
