@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import VisibleContactList from '../containers/VisibleContactList'
-import ContactForm from '../containers/ContactForm'
+import NewContactForm from '../containers/NewContactForm'
 
 const MainSection = ({}) =>
   (
@@ -21,7 +21,7 @@ const MainSection = ({}) =>
           <VisibleContactList  />
         </div>
         <div className="col-sm-12 col-md-6">
-          <ContactForm  />
+          <NewContactForm />
         </div>
       </div>
     </div>

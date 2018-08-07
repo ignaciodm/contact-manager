@@ -20,7 +20,7 @@ export default class Contact extends Component {
         </div>
         <div className="media-heading">
           <h3>
-            {contact.name}
+            {contact.firstName} {contact.lastName}
             <small>
               <a href="#contacts/edit/{contact.id}"><span className="glyphicon glyphicon-pencil"></span></a>
               <a href="#contacts/delete/{contact.id}" className="delete-contract">

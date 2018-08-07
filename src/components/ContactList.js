@@ -13,7 +13,8 @@ const ContactList = ({ filteredContacts, actions }) => (
 ContactList.propTypes = {
   filteredContacts: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     tel: PropTypes.string.isRequired
   }).isRequired).isRequired,

@@ -1,10 +1,6 @@
 import React from 'react'
 
-
-import Grid from 'react-bootstrap/lib/Grid'
-import Row from 'react-bootstrap/lib/Row'
 import Col from 'react-bootstrap/lib/Col'
-import Form from 'react-bootstrap/lib/Form'
 import FormGroup from 'react-bootstrap/lib/FormGroup'
 import ControlLabel from 'react-bootstrap/lib/ControlLabel'
 import FormControl from 'react-bootstrap/lib/FormControl'
@@ -32,14 +28,34 @@ function FieldGroup({ id, label, help, ...props }) {
  * The layout uses Bootstrap 4 classes as a visual theme.
  **/
 class ContactForm extends React.Component {
-  state = {
-    showFormSuccess: false
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      contact: {
+        firstName: '',
+        lastName: '',
+        tel: '',
+        email: ''
+      }
+    };
+  }
+
+  handleChange = (event, contactProperty) => {
+    let newContactState =  {...this.state.contact};
+    newContactState[contactProperty] = event.currentTarget.value ;
+    this.setState({contact: newContactState});
   };
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    
     //Now it just displays a success message.
-    this.setState({showFormSuccess: true});
-    setTimeout(() => {this.setState({showFormSuccess: false});}, 5000)
+    this.setState({...this.state.contact, showFormSuccess: true});
+
+    this.props.onSubmit(this.state.contact)
+    
+    setTimeout(() => {this.setState({...this.state.contact, showFormSuccess: false});}, 5000)
   }
 
   _renderSuccessMessage() {
@@ -66,32 +82,40 @@ class ContactForm extends React.Component {
                <FieldGroup
                  id="contactFormFirstName"
                  type="text"
-                 required="true"
                  label="First name"
+                 value={this.state.contact.firstName}
+                 onChange={(event) => this.handleChange(event, 'firstName')}
+                 required="true"
                />
 
                <FieldGroup
                  id="contactFormLastName"
                  type="text"
-                 required="true"
                  label="Last name"
+                 value={this.state.contact.lastName}
+                 onChange={(event) => this.handleChange(event, 'lastName')}
+                 required="true"
                />
 
                <FieldGroup
                  id="contactFormEmail"
                  type="email"
                  required="true"
-                 placeholder="Email"
                  label="Email"
+                 value={this.state.contact.email}
+                 onChange={(event) => this.handleChange(event, 'email')}
                  placeholder="name@example.com"
                />
 
                <FieldGroup
                  id="contactTelephone"
                  type="text"
-                 required="true"
-                 placeholder="123-456-789"
                  label="Telephone number"
+                 value={this.state.contact.tel}
+                 onChange={(event) => this.handleChange(event, 'tel')}
+                 placeholder="123-456-789"
+                 required="true"
+                 
                />
 
               <FormGroup>
