@@ -3,18 +3,27 @@ import PropTypes from 'prop-types'
 
 export default class Contact extends Component {
   static propTypes = {
-    contact: PropTypes.object.isRequired
-    // editContact: PropTypes.func.isRequired,
+    contact: PropTypes.object.isRequired,
+    isSelected: PropTypes.bool.isRequired,
+    onEditContactClick: PropTypes.func.isRequired, // TODO Instead of handle this, should try router
     // deleteContact: PropTypes.func.isRequired
   }
+
+  handleEditClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.props.onEditContactClick(this.props.contact)
+  };
 
   state = {}
 
   render() {
-    const { contact } = this.props
+    const { contact, isSelected } = this.props
 
     return (
       <li className="media col-md-6 col-lg-4">
+        {isSelected ? 'SELECTED' : 'NO'}
         <div className="thumbnail">
           <img className="media-object" src={`${contact.avatarUrl}`}/>
         </div>
@@ -22,7 +31,9 @@ export default class Contact extends Component {
           <h3>
             {contact.firstName} {contact.lastName}
             <small>
-              <a href="#contacts/edit/{contact.id}"><span className="glyphicon glyphicon-pencil"></span></a>
+              <a href={`contacts/edit/${contact.id}`} onClick={this.handleEditClick}>
+                <span className="glyphicon glyphicon-pencil"></span>
+              </a>
               <a href="#contacts/delete/{contact.id}" className="delete-contract">
                 <span className="glyphicon glyphicon-trash"></span>
               </a>

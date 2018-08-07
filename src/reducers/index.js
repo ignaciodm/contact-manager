@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
 import contacts from './contacts'
+import selectedContact from './selectedContact'
 
 const rootReducer = combineReducers({
-  contacts
+  contacts,
+  selectedContact
 })
 
 export default rootReducer

@@ -95,12 +95,12 @@ export default function contacts(state = initialState, action) {
 
     case DELETE_CONTACT:
       return state.filter(c =>
-        c.id !== action.id
+        c.id !== contact.id
       )
 
     case EDIT_CONTACT:
       return state.map(c =>
-        c.id === action.id ?
+        c.id === contact.id ?
           { ...c,
             firstName: contact.firstName,
             lastName: contact.lastName,
