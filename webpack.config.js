@@ -56,6 +56,17 @@ module.exports = {
           presets: ['env', 'stage-0', 'react']
         }
       }
+    },
+    {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    },
+    {
+      test: /\.(png|gif|svg|eot|ttf|woff|woff2)$/, // TODO add jpg when import images work
+      loader: 'url-loader',
+      options: {
+        limit: 10000
+      }
     }]
   }
 }

@@ -6,6 +6,8 @@ import { createStore } from 'redux';
 import reducer from './reducers'
 import App from './containers/App';
 
+
+import 'bootstrap/dist/css/bootstrap.css'
 import './styles/main.scss';
 
 

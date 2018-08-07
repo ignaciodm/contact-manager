@@ -14,7 +14,7 @@ export default class Contact extends Component {
     const { contact } = this.props
 
     return (
-      <li>
+      <li className="media col-md-6 col-lg-4">
         <div className="thumbnail">
           <img className="media-object" src={`${contact.avatarUrl}`}/>
         </div>
