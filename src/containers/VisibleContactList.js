@@ -4,10 +4,16 @@ import { setSelectedContact }  from '../actions/index'
 import ContactList from '../components/ContactList'
 import { getVisibleContacts } from '../selectors'
 
-const mapStateToProps = state => ({
-  filteredContacts: getVisibleContacts(state),
-  selectedContact: state.selectedContact
-})
+const mapStateToProps = (state) => {
+  let view = state.view;
+
+  return {
+    filteredContacts: getVisibleContacts(state),
+    selectedContact: view.selectedContact,
+    detailMode: view.listMode === 'detail'
+  }
+
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import VisibleContactList from '../containers/VisibleContactList'
 import ContactForm from '../containers/ContactForm'
-import { setEmptyContact }  from '../actions/index'
+import { setEmptyContact, toggleListViewMode }  from '../actions/index'
 import Button from 'react-bootstrap/lib/Button'
 
 class MainSection extends React.Component {
@@ -19,6 +19,13 @@ class MainSection extends React.Component {
     event.stopPropagation();
 
     this.props.onAddNewContactClick()
+  };
+
+  handleToggleViewClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.props.onToggleListView()
   };
 
   render() {
@@ -42,6 +49,7 @@ class MainSection extends React.Component {
 
           <div className={showForm ? "col-sm-12 col-md-6":  "col-sm-12"} style={{'overflowY': showForm ? 'scroll' : ''}}>
             <Button type="button" onClick={this.handleAddNewContactClick}>Add New Contact</Button>
+            <Button type="button" onClick={this.handleToggleViewClick}>ToggleView</Button>
             <VisibleContactList  />
           </div>
           
@@ -55,16 +63,27 @@ class MainSection extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-  isEditing: state.selectedContact && state.selectedContact.id,
-  isAddingNewContact: state.selectedContact && !state.selectedContact.id
-})
+const mapStateToProps = (state) => {
+  let view = state.view;
+  
+  let selectedContact = view.selectedContact;
+  
+  return {
+    detailView: view.listMode === 'detail',
+    isEditing: selectedContact && selectedContact.id,
+    isAddingNewContact: selectedContact && !selectedContact.id
+  }
+  
+}
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddNewContactClick: () => {
      dispatch(setEmptyContact())
+    },
+    onToggleListView: () => {
+      dispatch(toggleListViewMode())
     }
   };
 }

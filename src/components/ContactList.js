@@ -2,10 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Contact from './Contact'
 
-const ContactList = ({ filteredContacts, selectedContact, onEditContactClick }) => (
+const ContactList = ({ filteredContacts, selectedContact, detailMode, onEditContactClick }) => (
   <ul className="media-list row contact-list">
     {filteredContacts.map(contact =>
-      <Contact key={contact.id} contact={contact} isSelected={contact.id === (selectedContact && selectedContact.id)} onEditContactClick={onEditContactClick} />
+      <Contact key={contact.id}
+               contact={contact}
+               isSelected={contact.id === (selectedContact && selectedContact.id)}
+               detailMode={detailMode}
+               onEditContactClick={onEditContactClick} />
     )}
   </ul>
 )
@@ -22,6 +26,7 @@ ContactList.propTypes = {
     tel: PropTypes.string.isRequired
   }).isRequired).isRequired,
   selectedContact: PropTypes.object,
+  detailMode: PropTypes.bool.isRequired,
   onEditContactClick: PropTypes.func.isRequired
 }
 

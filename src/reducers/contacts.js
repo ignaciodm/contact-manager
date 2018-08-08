@@ -72,7 +72,6 @@ const initialState = [
     email: 'RodolfoPRobinett@jourrapide.com',
     avatarUrl: asset6
   }
-
 ]
 
 export default function contacts(state = initialState, action) {

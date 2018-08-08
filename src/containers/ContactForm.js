@@ -4,9 +4,10 @@ import { editContact, addContact, unselectContact }  from '../actions/index'
 import ContactForm  from '../components/ContactForm'
 
 const mapStateToProps = (state) => {
+  let selectedContact = state.view.selectedContact;
   return {
-    contact: state.selectedContact,
-    isEditing: state.selectedContact && state.selectedContact.id // TODO duplicated logic in parent component
+    contact: selectedContact,
+    isEditing: selectedContact && selectedContact.id // TODO duplicated logic in parent component
   }
 }
 
