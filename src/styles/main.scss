@@ -49,10 +49,6 @@
   }
 }
 
-.media:first-child {
-  margin-top: 15px;
-}
-
 .btn-outline {
   color: #563d7c;
   background-color: transparent;
@@ -82,6 +78,22 @@ a.thumbnail.active {
   border-color: #563d7c;
 }
 
-ul.contact-list li.selected {
-  background: #b2e7ff;
+ul.contact-list {
+  li.selected {
+    background: #b2e7ff;
+  }
+
+  li.detail {
+    .contact {
+      .contact-avatar img {
+        width: 40%;
+        height: 40%;
+        border-radius: 49px;
+      }
+      .contact-description p.contact-fullname{
+        padding-top: 19px;
+        font-size: 18px;
+      }
+    }
+  }
 }
