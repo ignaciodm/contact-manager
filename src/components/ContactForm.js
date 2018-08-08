@@ -32,15 +32,15 @@ class ContactForm extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    let emptyContact = {
-      firstName: '',
-      lastName: '',
-      tel: '',
-      email: ''
-    }
+    // let emptyContact = {
+    //   firstName: '',
+    //   lastName: '',
+    //   tel: '',
+    //   email: ''
+    // }
 
     this.state = {
-      contact: this.props.contact || emptyContact
+      contact: this.props.contact
     };
   }
 
