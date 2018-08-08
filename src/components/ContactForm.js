@@ -83,63 +83,68 @@ class ContactForm extends React.Component {
   render() {
 
     return (
-      <Panel>
-        <Panel.Heading>
-          <Panel.Title componentClass="h3">{this.props.isEditing ? 'Edit' : 'Add'} Contact</Panel.Title>
-        </Panel.Heading>
-        <Panel.Body>
-          <form onSubmit={this.handleSubmit} className="form-horizontal">
+      <div>
+        <div className="row">
+          <div className="card">
+            <h4 className="text-center card-header" >
+              {this.props.isEditing ? 'Edit' : 'Add'} Contact
+            </h4>
+            <div className="card-body">
 
-            <FieldGroup
-              id="contactFormFirstName"
-              type="text"
-              label="First name"
-              value={this.state.contact.firstName}
-              onChange={(event) => this.handleChange(event, 'firstName')}
-              required="true"
-            />
+             <form onSubmit={this.handleSubmit} className="form-horizontal">
 
-            <FieldGroup
-              id="contactFormLastName"
-              type="text"
-              label="Last name"
-              value={this.state.contact.lastName}
-              onChange={(event) => this.handleChange(event, 'lastName')}
-              required="true"
-            />
+               <FieldGroup
+                 id="contactFormFirstName"
+                 type="text"
+                 label="First name"
+                 value={this.state.contact.firstName}
+                 onChange={(event) => this.handleChange(event, 'firstName')}
+                 required="true"
+               />
 
-            <FieldGroup
-              id="contactFormEmail"
-              type="email"
-              required="true"
-              label="Email"
-              value={this.state.contact.email}
-              onChange={(event) => this.handleChange(event, 'email')}
-              placeholder="name@example.com"
-            />
+               <FieldGroup
+                 id="contactFormLastName"
+                 type="text"
+                 label="Last name"
+                 value={this.state.contact.lastName}
+                 onChange={(event) => this.handleChange(event, 'lastName')}
+                 required="true"
+               />
 
-            <FieldGroup
-              id="contactTelephone"
-              type="text"
-              label="Telephone number"
-              value={this.state.contact.tel}
-              onChange={(event) => this.handleChange(event, 'tel')}
-              placeholder="123-456-789"
-              required="true"
+               <FieldGroup
+                 id="contactFormEmail"
+                 type="email"
+                 required="true"
+                 label="Email"
+                 value={this.state.contact.email}
+                 onChange={(event) => this.handleChange(event, 'email')}
+                 placeholder="name@example.com"
+               />
 
-            />
+               <FieldGroup
+                 id="contactTelephone"
+                 type="text"
+                 label="Telephone number"
+                 value={this.state.contact.tel}
+                 onChange={(event) => this.handleChange(event, 'tel')}
+                 placeholder="123-456-789"
+                 required="true"
 
-            <FormGroup>
-              <Col smOffset={2} sm={10}>
-                <Button type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
-                <Button type="button" onClick={this.handleClose}>Cancel</Button>
-              </Col>
-            </FormGroup>
-          </form>
-        </Panel.Body>
+               />
 
+              <FormGroup>
+                <Col smOffset={2} sm={10}>
+                  <Button type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
+                  <Button type="button" onClick={this.handleClose}>Cancel</Button>
+                </Col>
+              </FormGroup>
+            </form>
+
+            </div>
+          </div>
+        </div>
        {this.state.showFormSuccess ? this._renderSuccessMessage() : null}
-      </Panel>
+     </div>
     )
 
   }
