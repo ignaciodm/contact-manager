@@ -32,13 +32,6 @@ class ContactForm extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    // let emptyContact = {
-    //   firstName: '',
-    //   lastName: '',
-    //   tel: '',
-    //   email: ''
-    // }
-
     this.state = {
       contact: this.props.contact
     };
@@ -62,10 +55,6 @@ class ContactForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    
-    //Now it just displays a success message.
-    this.setState({...this.state.contact, showFormSuccess: true}); // TODO check if needed showFormSuccess needed
-
     this.props.onSubmit(this.state.contact)
   }
 
@@ -85,68 +74,58 @@ class ContactForm extends React.Component {
   render() {
 
     return (
-      <div>
-        <div className="contact-form row">
-          <div className="card">
-            <h4 className="text-center card-header" >
-              {this.props.isEditing ? 'Edit' : 'Add'} Contact
-            </h4>
-            <div className="card-body">
+      <div className="contact-form card row">
+        <h4 className="text-center card-header">
+          {this.props.isEditing ? 'Edit' : 'Add'} Contact
+        </h4>
+        <form onSubmit={this.handleSubmit} className="card-body form-horizontal">
+          <FieldGroup
+            id="contactFormFirstName"
+            type="text"
+            label="First name"
+            value={this.state.contact.firstName}
+            onChange={(event) => this.handleChange(event, 'firstName')}
+            required="true"
+          />
 
-             <form onSubmit={this.handleSubmit} className="form-horizontal">
+          <FieldGroup
+            id="contactFormLastName"
+            type="text"
+            label="Last name"
+            value={this.state.contact.lastName}
+            onChange={(event) => this.handleChange(event, 'lastName')}
+            required="true"
+          />
 
-               <FieldGroup
-                 id="contactFormFirstName"
-                 type="text"
-                 label="First name"
-                 value={this.state.contact.firstName}
-                 onChange={(event) => this.handleChange(event, 'firstName')}
-                 required="true"
-               />
+          <FieldGroup
+            id="contactFormEmail"
+            type="email"
+            required="true"
+            label="Email"
+            value={this.state.contact.email}
+            onChange={(event) => this.handleChange(event, 'email')}
+            placeholder="name@example.com"
+          />
 
-               <FieldGroup
-                 id="contactFormLastName"
-                 type="text"
-                 label="Last name"
-                 value={this.state.contact.lastName}
-                 onChange={(event) => this.handleChange(event, 'lastName')}
-                 required="true"
-               />
+          <FieldGroup
+            id="contactTelephone"
+            type="text"
+            label="Telephone number"
+            value={this.state.contact.tel}
+            onChange={(event) => this.handleChange(event, 'tel')}
+            placeholder="123-456-789"
+            required="true"
+          />
 
-               <FieldGroup
-                 id="contactFormEmail"
-                 type="email"
-                 required="true"
-                 label="Email"
-                 value={this.state.contact.email}
-                 onChange={(event) => this.handleChange(event, 'email')}
-                 placeholder="name@example.com"
-               />
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Button className="btn-primary" type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
+              <Button className="btn-secondary" type="button" onClick={this.handleClose}>Cancel</Button>
+            </Col>
+          </FormGroup>
+        </form>
 
-               <FieldGroup
-                 id="contactTelephone"
-                 type="text"
-                 label="Telephone number"
-                 value={this.state.contact.tel}
-                 onChange={(event) => this.handleChange(event, 'tel')}
-                 placeholder="123-456-789"
-                 required="true"
-
-               />
-
-              <FormGroup>
-                <Col smOffset={2} sm={10}>
-                  <Button className="btn-primary" type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
-                  <Button className="btn-secondary" type="button" onClick={this.handleClose}>Cancel</Button>
-                </Col>
-              </FormGroup>
-            </form>
-
-            </div>
-          </div>
-        </div>
-       {this.state.showFormSuccess ? this._renderSuccessMessage() : null}
-     </div>
+      </div>
     )
 
   }
