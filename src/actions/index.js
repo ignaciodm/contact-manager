@@ -4,6 +4,7 @@ import * as types from '../constants/ActionTypes'
 
 export const addContact = contact => ({ type: types.ADD_CONTACT, contact })
 export const editContact = contact => ({ type: types.EDIT_CONTACT, contact })
+export const deleteContact = contact => ({ type: types.DELETE_CONTACT, contact })
 
 
 // VIEW SELECTION ACTIONS
