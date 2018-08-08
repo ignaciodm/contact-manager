@@ -50,6 +50,10 @@ class ContactForm extends React.Component {
     }
   }
 
+  componentWillUnmount(prevProps) {
+    this.setState({contact: null});
+  }
+
   handleChange = (event, contactProperty) => {
     let newContactState =  {...this.state.contact};
     newContactState[contactProperty] = event.currentTarget.value ;
@@ -63,8 +67,6 @@ class ContactForm extends React.Component {
     this.setState({...this.state.contact, showFormSuccess: true}); // TODO check if needed showFormSuccess needed
 
     this.props.onSubmit(this.state.contact)
-    
-    setTimeout(() => {this.setState({...this.state.contact, showFormSuccess: false});}, 5000)
   }
 
   handleClose = (event) => {
