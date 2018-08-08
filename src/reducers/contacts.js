@@ -4,6 +4,7 @@ import {
   EDIT_CONTACT
 } from '../constants/ActionTypes'
 
+
 import asset1 from '../assets/faces/1.jpg';
 import asset2 from '../assets/faces/2.jpg';
 import asset3 from '../assets/faces/3.jpg';
@@ -19,9 +20,6 @@ import asset12 from '../assets/faces/12.jpg';
 import asset13 from '../assets/faces/13.jpg';
 import asset14 from '../assets/faces/14.jpg';
 import asset15 from '../assets/faces/15.jpg';
-
-
-
 
 const initialState = [
   {
