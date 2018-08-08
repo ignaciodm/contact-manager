@@ -66,35 +66,6 @@ class MainSection extends React.Component {
 
 }
 
-const mapStateToProps = (state) => {
-  let view = state.view;
-  
-  let selectedContact = view.selectedContact;
-  
-  return {
-    detailView: view.listMode === 'detail',
-    isEditing: selectedContact && selectedContact.id,
-    isAddingNewContact: selectedContact && !selectedContact.id
-  }
-  
-}
-
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAddNewContactClick: () => {
-     dispatch(setEmptyContact())
-    },
-    onToggleListView: () => {
-      dispatch(toggleListViewMode())
-    }
-  };
-}
-
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MainSection)
+export default MainSection
 
 
