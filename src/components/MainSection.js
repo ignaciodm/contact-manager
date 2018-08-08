@@ -48,8 +48,11 @@ class MainSection extends React.Component {
         <div className="row">
 
           <div className={showForm ? "col-sm-12 col-md-6":  "col-sm-12"} style={{'overflowY': showForm ? 'scroll' : ''}}>
-            <Button type="button" onClick={this.handleAddNewContactClick}>Add New Contact</Button>
-            <Button type="button" onClick={this.handleToggleViewClick}>ToggleView</Button>
+            <div className="row list-header-bar">
+              <Button type="button" onClick={this.handleAddNewContactClick}>Add New Contact</Button>
+              <Button type="button" onClick={this.handleToggleViewClick}>ToggleView</Button>
+            </div>
+
             <VisibleContactList  />
           </div>
           

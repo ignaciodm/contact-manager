@@ -84,7 +84,7 @@ class ContactForm extends React.Component {
 
     return (
       <div>
-        <div className="row">
+        <div className="contact-form row">
           <div className="card">
             <h4 className="text-center card-header" >
               {this.props.isEditing ? 'Edit' : 'Add'} Contact
@@ -134,8 +134,8 @@ class ContactForm extends React.Component {
 
               <FormGroup>
                 <Col smOffset={2} sm={10}>
-                  <Button type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
-                  <Button type="button" onClick={this.handleClose}>Cancel</Button>
+                  <Button className="btn-primary" type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
+                  <Button className="btn-secondary" type="button" onClick={this.handleClose}>Cancel</Button>
                 </Col>
               </FormGroup>
             </form>

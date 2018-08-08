@@ -23,52 +23,48 @@ export default class Contact extends Component {
   render() {
     const { contact, isSelected, detailMode } = this.props;
 
-    let classNames = classnames('media', {
-      'col-md-6 col-lg-4': !detailMode,
-      'col-sm-12': detailMode,
-      selected: isSelected,
-      detail: detailMode
-      })
+    let classNames = classnames('contact', {
+      'col-md-6 mosaic': !detailMode,
+      'col-sm-12 detail': detailMode,
+      selected: isSelected
+    })
 
     let element;
 
     if (detailMode) {
       element = (
-        <div className="row contact">
-          <div className="col-sm-2 contact-avatar">
-            <img className="media-object" src={`${contact.avatarUrl}`}/>
+        <div className="media">
+          <div className="pull-left">
+            <img className="media-object " src={`${contact.avatarUrl}`}/>
           </div>
-          <div className="col-sm-10 contact-description">
-            <p className="contact-fullname">
-              {contact.firstName} {contact.lastName}
-            </p>
+          <div className="media-body">
+            <h4 className="media-heading"> {contact.firstName} {contact.lastName}</h4>
+            <span className="media-detail">{contact.email}</span>
           </div>
         </div>
       )
     } else {
       element = (
-        <div>
-          <div className="thumbnail">
-            <img className="media-object" src={`${contact.avatarUrl}`}/>
-          </div>
-          <div className="media-heading">
-            <h3>
-              {contact.firstName} {contact.lastName}
-            </h3>
+        <div className="media">
+          <div className="thumbnail pull-left">
+            <img className="media-object " src={`${contact.avatarUrl}`}/>
           </div>
           <div className="media-body">
+            <h3 className="media-heading"> {contact.firstName} {contact.lastName}</h3>
             <dl>
-              <dd>{contact.email}</dd>
+              <dt>Email:</dt>
+              <dd><span className="media-detail">{contact.email}</span></dd>
+              <dt>Phone:</dt>
+              <dd><span className="media-detail">{contact.tel}</span></dd>
             </dl>
           </div>
-          <hr/>
         </div>
       )
     }
 
     return (
-       <li className={classNames}  onClick={this.handleEditClick}>
-        {element}
+       <li className={classNames} onClick={this.handleEditClick}>
+         {element}
       </li>
     )
   }
