@@ -8,9 +8,10 @@ const setup = ({detailMode = true, isSelected = true}) => {
   const props = {
     contact: {
       id: 1,
-      name : 'Terrence S. Hatfield',
-      tel: '651-603-1723',
-      email: 'TerrenceSHatfield@rhyta.com',
+      firstName : 'Test',
+      lastName : 'User',
+      tel: '123-456-789',
+      email: 'test.user@example.com',
       avatarUrl: asset1
     },
     detailMode: detailMode,
@@ -45,8 +46,7 @@ const getTextContent = elem => {
 }
 
 
-describe('components', () => {
-  describe('Contact', () => {
+describe('Contact component', () => {
     it('detail mode initial render', () => {
       const { output } = setup({})
 
@@ -84,13 +84,14 @@ describe('components', () => {
       expect(mediaBody.type).toBe('div')
       expect(mediaBody.props.className).toBe('media-body')
     })
+
+    it('li onCLick should call handleEditClick', () => {
+      const { output, props } = setup({})
+
+      const input = output.props.children.props.children[0]
+      output.props.onClick({preventDefault: jest.fn(), stopPropagation: jest.fn()})
+      expect(props.onEditContactClick).toBeCalled()
+    })
   })
 
-  it('li onCLick should call handleEditClick', () => {
-    const { output, props } = setup({})
 
-    const input = output.props.children.props.children[0]
-    output.props.onClick({preventDefault: jest.fn(), stopPropagation: jest.fn()})
-    expect(props.onEditContactClick).toBeCalled()
-  })
-})
