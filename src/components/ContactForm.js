@@ -6,7 +6,6 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel'
 import FormControl from 'react-bootstrap/lib/FormControl'
 import HelpBlock from 'react-bootstrap/lib/HelpBlock'
 import Button from 'react-bootstrap/lib/Button'
-import Panel from 'react-bootstrap/lib/Panel'
 
 function FieldGroup({ id, label, help, ...props }) {
   return (
@@ -58,17 +57,9 @@ class ContactForm extends React.Component {
     this.props.onSubmit(this.state.contact)
   }
 
-  handleClose = (event) => {
+  handleCancel = (event) => {
     event.preventDefault();
     this.props.onCancel()
-  }
-
-  _renderSuccessMessage() {
-    return (
-      <div className={"alert alert-success mt-4"} role="alert">
-        Form was successfully validated and is ready to be submitted!
-      </div>
-    );
   }
 
   render() {
@@ -120,7 +111,7 @@ class ContactForm extends React.Component {
           <FormGroup>
             <Col smOffset={2} sm={10}>
               <Button className="btn-primary" type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
-              <Button className="btn-secondary" type="button" onClick={this.handleClose}>Cancel</Button>
+              <Button className="btn-secondary" type="button" onClick={this.handleCancel}>Cancel</Button>
             </Col>
           </FormGroup>
         </form>

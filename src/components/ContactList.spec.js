@@ -37,7 +37,6 @@ const setup = ({detailMode = true, isSelected = true}) => {
   }
 }
 
-
 describe('ContactList component', () => {
   it('should render ul', () => {
     const { output } = setup({})

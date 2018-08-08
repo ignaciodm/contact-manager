@@ -55,62 +55,74 @@ const setup = ({isEditing = true}) => {
 }
 
 describe('ContactForm component', () => {
-  it('edit initial render', () => {
-    const { output } = setup({})
+  describe('Edit form', () => {
+    it('edit initial render', () => {
+      const { output } = setup({})
 
-    expect(output.type).toBe('div')
-    expect(output.props.className).toEqual("contact-form card row")
+      expect(output.type).toBe('div')
+      expect(output.props.className).toEqual("contact-form card row")
 
-    const [cardHeader, cardBody] = output.props.children
-    expect(cardHeader.type).toBe('h4')
-    expect(getTextContent(cardHeader)).toBe('Edit Contact')
+      const [cardHeader, cardBody] = output.props.children
+      expect(cardHeader.type).toBe('h4')
+      expect(getTextContent(cardHeader)).toBe('Edit Contact')
 
-    expect(cardBody.type).toBe('form')
+      expect(cardBody.type).toBe('form')
 
-    const [firstNameGroup, lastNameGroup, emailGroup, phoneGroup, buttonGroups] = cardBody.props.children
+      const [firstNameGroup, lastNameGroup, emailGroup, phoneGroup, buttonGroups] = cardBody.props.children
 
-    const [primaryButton, cancelButton] = buttonGroups.props.children.props.children
+      const [primaryButton, cancelButton] = buttonGroups.props.children.props.children
 
-    expect(firstNameGroup.props.value).toBe(contact.firstName)
-    expect(lastNameGroup.props.value).toBe(contact.lastName)
-    expect(emailGroup.props.value).toBe(contact.email)
-    expect(phoneGroup.props.value).toBe(contact.tel)
-    expect(getTextContent(primaryButton)).toBe('Update Contact')
-    // const attrs = ['firstName', 'lastName', 'email', 'tel']
-    // cardBody.props.children.forEach((fieldGroup, i) => {
-    //   let valueForField = contact[attrs[i]]
-    //   expect(fieldGroup.props.value).toBe(valueForField)
-    //   // expect(contact.props.contact).toBe(props.filteredContacts[i])
-    // })
+      expect(firstNameGroup.props.value).toBe(contact.firstName)
+      expect(lastNameGroup.props.value).toBe(contact.lastName)
+      expect(emailGroup.props.value).toBe(contact.email)
+      expect(phoneGroup.props.value).toBe(contact.tel)
+      expect(getTextContent(primaryButton)).toBe('Update Contact')
+    })
+
   })
 
-  it('new contact initial render', () => {
-    const { output } = setup({isEditing: false })
+  describe('Add new form', () => {
+    it('initial render', () => {
+      const { output } = setup({isEditing: false })
 
-    expect(output.type).toBe('div')
-    expect(output.props.className).toEqual("contact-form card row")
+      expect(output.type).toBe('div')
+      expect(output.props.className).toEqual("contact-form card row")
+
+      const [cardHeader, cardBody] = output.props.children
+      expect(cardHeader.type).toBe('h4')
+      expect(getTextContent(cardHeader)).toBe('Add Contact')
+
+      expect(cardBody.type).toBe('form')
+
+      const [firstNameGroup, lastNameGroup, emailGroup, phoneGroup, buttonGroups] = cardBody.props.children
+      const [primaryButton, cancelButton] = buttonGroups.props.children.props.children
+
+      expect(firstNameGroup.props.value).toBe(newContact.firstName)
+      expect(lastNameGroup.props.value).toBe(newContact.lastName)
+      expect(emailGroup.props.value).toBe(newContact.email)
+      expect(phoneGroup.props.value).toBe(newContact.tel)
+      expect(getTextContent(primaryButton)).toBe('Add Contact')
+
+    })
+  })
+
+  it('onSubmit should call handleSubmit with contact', () => {
+    const { output, props } = setup({})
 
     const [cardHeader, cardBody] = output.props.children
-    expect(cardHeader.type).toBe('h4')
-    expect(getTextContent(cardHeader)).toBe('Add Contact')
+    cardBody.props.onSubmit({preventDefault: jest.fn()})
+    expect(props.onSubmit).toBeCalledWith(contact)
+  })
 
-    expect(cardBody.type).toBe('form')
+  it('on cancel click should call onCancel', () => {
+    const { output, props } = setup({})
 
+    const [cardHeader, cardBody] = output.props.children
     const [firstNameGroup, lastNameGroup, emailGroup, phoneGroup, buttonGroups] = cardBody.props.children
     const [primaryButton, cancelButton] = buttonGroups.props.children.props.children
-
-    expect(firstNameGroup.props.value).toBe(newContact.firstName)
-    expect(lastNameGroup.props.value).toBe(newContact.lastName)
-    expect(emailGroup.props.value).toBe(newContact.email)
-    expect(phoneGroup.props.value).toBe(newContact.tel)
-    expect(getTextContent(primaryButton)).toBe('Add Contact')
-
-    // const attrs = ['firstName', 'lastName', 'email', 'tel']
-    // cardBody.props.children.forEach((fieldGroup, i) => {
-    //   let valueForField = contact[attrs[i]]
-    //   expect(fieldGroup.props.value).toBe(valueForField)
-    //   // expect(contact.props.contact).toBe(props.filteredContacts[i])
-    // })
+    cancelButton.props.onClick({preventDefault: jest.fn()})
+    expect(props.onCancel).toBeCalled()
   })
+
 })
 

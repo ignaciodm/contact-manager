@@ -34,18 +34,6 @@ const setup = ({detailMode = true, isSelected = true}) => {
   }
 }
 
-const getTextContent = elem => {
-  const children = Array.isArray(elem.props.children) ?
-    elem.props.children : [ elem.props.children ]
-
-  return children.reduce((out, child) =>
-      // Concatenate the text
-      // Children are either elements or text strings
-    out + (child.props ? getTextContent(child) : child)
-    , '')
-}
-
-
 describe('Contact component', () => {
     it('detail mode initial render', () => {
       const { output } = setup({})
@@ -85,7 +73,7 @@ describe('Contact component', () => {
       expect(mediaBody.props.className).toBe('media-body')
     })
 
-    it('li onCLick should call handleEditClick', () => {
+    it('li onCLick should call onEditContactClick', () => {
       const { output, props } = setup({})
 
       const input = output.props.children.props.children[0]
