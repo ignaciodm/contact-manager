@@ -1,32 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import ListHeaderBar from '../containers/ListHeaderBar';
 import VisibleContactList from '../containers/VisibleContactList'
 import ContactForm from '../containers/ContactForm'
-import { setEmptyContact, toggleListViewMode }  from '../actions/index'
-import Button from 'react-bootstrap/lib/Button'
 
 class MainSection extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isEditing: this.props.isEditing,
-      isAddingNewContact: this.props.isAddingNewContact
-    };
   }
-
-  handleAddNewContactClick = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.props.onAddNewContactClick()
-  };
-
-  handleToggleViewClick = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.props.onToggleListView()
-  };
 
   render() {
     const isEditing = this.props.isEditing;
@@ -48,11 +29,7 @@ class MainSection extends React.Component {
         <div className="row">
 
           <div className={showForm ? "col-sm-12 col-md-6":  "col-sm-12"} style={{'overflowY': showForm ? 'scroll' : ''}}>
-            <div className="row list-header-bar">
-              <Button type="button" onClick={this.handleAddNewContactClick}>Add New Contact</Button>
-              <Button type="button" onClick={this.handleToggleViewClick}>ToggleView</Button>
-            </div>
-
+            <ListHeaderBar />
             <VisibleContactList  />
           </div>
           
