@@ -34,9 +34,7 @@ export default class Contact extends Component {
     if (detailMode) {
       element = (
         <div className="media">
-          <div className="pull-left">
-            <img className="media-object " src={`${contact.avatarUrl}`}/>
-          </div>
+          <img className="media-object pull-left" src={`${contact.avatarUrl}`}/>
           <div className="media-body">
             <h4 className="media-heading"> {contact.firstName} {contact.lastName}</h4>
             <span className="media-detail">{contact.email}</span>

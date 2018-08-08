@@ -4,7 +4,7 @@ import Contact from './Contact'
 
 import asset1 from '../assets/faces/1.jpg';
 
-const setup = ( ) => {
+const setup = ({detailMode = true, isSelected = true}) => {
   const props = {
     contact: {
       id: 1,
@@ -12,9 +12,10 @@ const setup = ( ) => {
       tel: '651-603-1723',
       email: 'TerrenceSHatfield@rhyta.com',
       avatarUrl: asset1
-    }
-    // editContact: jest.fn(),
-    // deleteContact: jest.fn()
+    },
+    detailMode: detailMode,
+    isSelected: isSelected,
+    onEditContactClick: jest.fn()
   }
 
   const renderer = createRenderer()
@@ -32,25 +33,64 @@ const setup = ( ) => {
   }
 }
 
+const getTextContent = elem => {
+  const children = Array.isArray(elem.props.children) ?
+    elem.props.children : [ elem.props.children ]
+
+  return children.reduce((out, child) =>
+      // Concatenate the text
+      // Children are either elements or text strings
+    out + (child.props ? getTextContent(child) : child)
+    , '')
+}
+
+
 describe('components', () => {
   describe('Contact', () => {
-    it('initial render', () => {
-      const { output } = setup()
+    it('detail mode initial render', () => {
+      const { output } = setup({})
 
       expect(output.type).toBe('li')
-      expect(output.props.className).toBeUndefined()
+      expect(output.props.className).toEqual('contact col-sm-12 detail selected')
 
-      const [ thumbnailDiv, headingDiv, bodyDiv ] = output.props.children
+      const media = output.props.children
+      expect(media.type).toBe('div')
+      expect(media.props.className).toBe('media')
 
-      expect(thumbnailDiv.type).toBe('div')
-      expect(thumbnailDiv.props.className).toBe('thumbnail')
+      const [ img, mediaBody ] = media.props.children
 
-      expect(headingDiv.type).toBe('div')
-      expect(headingDiv.props.className).toBe('media-heading')
+      expect(img.type).toBe('img')
+      expect(img.props.className).toBe('media-object pull-left')
 
-      expect(bodyDiv.type).toBe('div')
-      expect(bodyDiv.props.className).toBe('media-body')
+      expect(mediaBody.type).toBe('div')
+      expect(mediaBody.props.className).toBe('media-body')
     })
 
+    it('mosaic mode initial render', () => {
+      const { output } = setup({detailMode: false, isSelected: false})
+
+      expect(output.type).toBe('li')
+      expect(output.props.className).toEqual('contact col-md-6 mosaic')
+
+      const media = output.props.children
+      expect(media.type).toBe('div')
+      expect(media.props.className).toBe('media')
+
+      const [ thumbnail, mediaBody ] = media.props.children
+
+      expect(thumbnail.type).toBe('div')
+      expect(thumbnail.props.className).toBe('thumbnail pull-left')
+
+      expect(mediaBody.type).toBe('div')
+      expect(mediaBody.props.className).toBe('media-body')
+    })
+  })
+
+  it('li onCLick should call handleEditClick', () => {
+    const { output, props } = setup({})
+
+    const input = output.props.children.props.children[0]
+    output.props.onClick({preventDefault: jest.fn(), stopPropagation: jest.fn()})
+    expect(props.onEditContactClick).toBeCalled()
   })
 })
