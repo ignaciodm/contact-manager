@@ -1,6 +1,10 @@
 import { SET_EMPTY_CONTACT, SET_SELECTED_CONTACT, UNSELECT_CONTACT, TOGGLE_LIST_VIEW_MODE } from '../constants/ActionTypes'
 
-const view = (state = {listMode: 'detail', selectedContact: null}, action) => {
+export const DETAIL_LIST_MODE = 'DETAIL_LIST_MODE'
+export const MOSAIC_LIST_MODE = 'MOSAIC_LIST_MODE'
+
+// TODO detail should be constant
+const view = (state = {listMode: DETAIL_LIST_MODE, selectedContact: null}, action) => {
   switch (action.type) {
     case SET_EMPTY_CONTACT:
 
@@ -25,7 +29,7 @@ const view = (state = {listMode: 'detail', selectedContact: null}, action) => {
         selectedContact: null
       };
     case TOGGLE_LIST_VIEW_MODE:
-      let listMode = state.listMode === 'detail' ? 'mosaic' : 'detail';
+      let listMode = state.listMode === DETAIL_LIST_MODE ? MOSAIC_LIST_MODE : DETAIL_LIST_MODE;
 
       return {
         ...state,

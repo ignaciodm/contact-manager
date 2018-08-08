@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { setSelectedContact }  from '../actions/index'
 import ContactList from '../components/ContactList'
 import { getVisibleContacts } from '../selectors'
+import {DETAIL_LIST_MODE} from '../reducers/view'
 
 const mapStateToProps = (state) => {
   let view = state.view;
@@ -10,7 +11,7 @@ const mapStateToProps = (state) => {
   return {
     filteredContacts: getVisibleContacts(state),
     selectedContact: view.selectedContact,
-    detailMode: view.listMode === 'detail'
+    detailMode: view.listMode === DETAIL_LIST_MODE
   }
 
 }

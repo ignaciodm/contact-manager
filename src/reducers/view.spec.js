@@ -1,4 +1,5 @@
 import view from './view'
+import {DETAIL_LIST_MODE, MOSAIC_LIST_MODE} from '../reducers/view'
 import * as types from '../constants/ActionTypes'
 
 const incompleteContact = {
@@ -14,7 +15,7 @@ const fullContact = {
   avatarUrl: '0.jpg'
 }
 
-const initialState = {listMode: 'detail', selectedContact: null}
+const initialState = {listMode: DETAIL_LIST_MODE, selectedContact: null}
 
 describe('views reducer', () => {
 
@@ -77,7 +78,7 @@ describe('views reducer', () => {
         })
       ).toEqual({
         ...initialState,
-        listMode: 'mosaic'
+        listMode: MOSAIC_LIST_MODE
       })
     })
   })
