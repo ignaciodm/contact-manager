@@ -18,13 +18,7 @@ const ContactList = ({ filteredContacts, selectedContact, detailMode, onEditCont
 // probably shape can be type of Contact. Extend contact to selectedContact
 
 ContactList.propTypes = {
-  filteredContacts: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    tel: PropTypes.string.isRequired
-  }).isRequired).isRequired,
+  filteredContacts: PropTypes.arrayOf(PropTypes.shape(Contact.propTypes.contact).isRequired).isRequired,
   selectedContact: PropTypes.object,
   detailMode: PropTypes.bool.isRequired,
   onEditContactClick: PropTypes.func.isRequired
