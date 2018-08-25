@@ -5,8 +5,8 @@ import * as types from '../constants/ActionTypes'
 // check jest mocks to see if can get rid of these initialization
 
 const incompleteContact = {
-  firstName : 'Test',
-  lastName : 'User',
+  firstName: 'Test',
+  lastName: 'User',
   tel: '123-456-789',
   email: 'test.user@example.com'
 }
@@ -18,8 +18,8 @@ const fullContact = {
 }
 
 const otherContact = {
-  firstName : 'Other Test',
-  lastName : 'Other User',
+  firstName: 'Other Test',
+  lastName: 'Other User',
   tel: '123-456-789',
   email: 'other.test.user@example.com'
 }
@@ -30,10 +30,9 @@ const otherFullContact = {
   avatarUrl: '1.jpg'
 }
 
-const NON_EXISTENT_ID = 99999;
+const NON_EXISTENT_ID = 99999
 
 describe('contacts reducer', () => {
-
   describe('initial state', () => {
     it('should handle initial state', () => {
       expect(contacts(undefined, {})).toHaveLength(6)
@@ -104,11 +103,11 @@ describe('contacts reducer', () => {
           otherFullContact
         ], {
           type: types.EDIT_CONTACT,
-          contact: {...otherFullContact, ...updateProps }
+          contact: { ...otherFullContact, ...updateProps }
         })
       ).toEqual([
         fullContact,
-        {...otherFullContact, ...updateProps }
+        { ...otherFullContact, ...updateProps }
       ])
     })
 
@@ -119,7 +118,7 @@ describe('contacts reducer', () => {
           otherFullContact
         ], {
           type: types.EDIT_CONTACT,
-          contact: {...otherFullContact, ...updateProps, id: NON_EXISTENT_ID }
+          contact: { ...otherFullContact, ...updateProps, id: NON_EXISTENT_ID }
         })
       ).toEqual([
         fullContact,

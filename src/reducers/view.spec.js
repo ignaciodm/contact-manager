@@ -1,10 +1,9 @@
-import view from './view'
-import {DETAIL_LIST_MODE, MOSAIC_LIST_MODE} from '../reducers/view'
+import view, {DETAIL_LIST_MODE, MOSAIC_LIST_MODE} from './view'
 import * as types from '../constants/ActionTypes'
 
 const incompleteContact = {
-  firstName : 'Test',
-  lastName : 'User',
+  firstName: 'Test',
+  lastName: 'User',
   tel: '123-456-789',
   email: 'test.user@example.com'
 }
@@ -18,7 +17,6 @@ const fullContact = {
 const initialState = {listMode: DETAIL_LIST_MODE, selectedContact: null}
 
 describe('views reducer', () => {
-
   describe('initial state', () => {
     it('should handle initial state', () => {
       expect(view(undefined, {})).toEqual(initialState)
@@ -82,5 +80,4 @@ describe('views reducer', () => {
       })
     })
   })
-
 })

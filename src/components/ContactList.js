@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import Contact from './Contact'
 
 const ContactList = ({ filteredContacts, selectedContact, detailMode, onEditContactClick }) => (
-  <ul className="media-list row contact-list">
+  <ul className='media-list row contact-list'>
     {filteredContacts.map(contact =>
-      <Contact key={contact.id}
-               contact={contact}
-               isSelected={contact.id === (selectedContact && selectedContact.id)}
-               detailMode={detailMode}
-               onEditContactClick={onEditContactClick} />
+      <Contact
+        key={contact.id}
+        contact={contact}
+        isSelected={contact.id === (selectedContact && selectedContact.id)}
+        detailMode={detailMode}
+        onEditContactClick={onEditContactClick} />
     )}
   </ul>
 )

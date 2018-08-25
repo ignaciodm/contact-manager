@@ -9,7 +9,7 @@ export const getVisibleContacts = createSelector(
     // if (_.isEmpty(searchInputText)) {
     //   return contacts;
     // } else {
-      return contacts; //TODO if added search input component, contacts could be filtered
+    return contacts // TODO if added search input component, contacts could be filtered
     // }
   }
 )

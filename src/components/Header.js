@@ -1,12 +1,10 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React from 'react'
 
 class Header extends React.Component {
-
-  render() {
+  render () {
     return (
-      <header className="bs-header">
-        <div className="container row">
+      <header className='bs-header'>
+        <div className='container row'>
           <h1>
             Contact Manager
             <small>Simple React/Redux example application</small>
@@ -15,6 +13,5 @@ class Header extends React.Component {
       </header>
     )
   }
-
 }
 export default Header

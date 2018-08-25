@@ -1,15 +1,15 @@
 import React from 'react'
-import { createRenderer } from 'react-test-renderer/shallow';
+import { createRenderer } from 'react-test-renderer/shallow'
 import ContactList from './ContactList'
 import Contact from './Contact'
 
-import asset1 from '../assets/faces/1.jpg';
+import asset1 from '../assets/faces/1.jpg'
 
 const setup = ({detailMode = true, isSelected = true}) => {
   const contact = {
     id: 1,
-    firstName : 'Test',
-    lastName : 'User',
+    firstName: 'Test',
+    lastName: 'User',
     tel: '123-456-789',
     email: 'test.user@example.com',
     avatarUrl: asset1
@@ -53,6 +53,4 @@ describe('ContactList component', () => {
       expect(contact.props.contact).toBe(props.filteredContacts[i])
     })
   })
-
 })
-

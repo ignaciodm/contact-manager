@@ -22,19 +22,19 @@ const view = (state = {listMode: DETAIL_LIST_MODE, selectedContact: null}, actio
       return {
         ...state,
         selectedContact: action.contact
-      };
+      }
     case UNSELECT_CONTACT:
       return {
         ...state,
         selectedContact: null
-      };
+      }
     case TOGGLE_LIST_VIEW_MODE:
-      let listMode = state.listMode === DETAIL_LIST_MODE ? MOSAIC_LIST_MODE : DETAIL_LIST_MODE;
+      let listMode = state.listMode === DETAIL_LIST_MODE ? MOSAIC_LIST_MODE : DETAIL_LIST_MODE
 
       return {
         ...state,
         listMode: listMode
-      };
+      }
     default:
       return state
   }

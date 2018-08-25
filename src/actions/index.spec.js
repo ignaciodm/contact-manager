@@ -3,29 +3,28 @@ import * as actions from './index'
 
 const contact = {
   id: 1,
-  firstName : 'Test',
-  lastName : 'User',
+  firstName: 'Test',
+  lastName: 'User',
   tel: '123-456-789',
   email: 'test.user@example.com',
   avatarUrl: 'url'
 }
 
 describe('contact actions', () => {
-
   it('addContact should create ADD_CONTACT action', () => {
     expect(actions.addContact(contact)).toEqual({
       type: types.ADD_CONTACT,
       contact: contact
     })
   })
-  
+
   it('deleteContact should create DELETE_CONTACT action', () => {
     expect(actions.deleteContact(contact)).toEqual({
       type: types.DELETE_CONTACT,
       contact: contact
     })
   })
-  
+
   it('editContact should create EDIT_CONTACT action', () => {
     expect(actions.editContact(contact)).toEqual({
       type: types.EDIT_CONTACT,
@@ -34,9 +33,7 @@ describe('contact actions', () => {
   })
 })
 
-
 describe('view actions', () => {
-
   it('setSelectedContact should create SET_SELECTED_CONTACT action', () => {
     expect(actions.setSelectedContact(contact)).toEqual({
       type: types.SET_SELECTED_CONTACT,
@@ -61,6 +58,4 @@ describe('view actions', () => {
       type: types.TOGGLE_LIST_VIEW_MODE
     })
   })
-
 })
-
