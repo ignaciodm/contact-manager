@@ -41,7 +41,7 @@ describe('Contact component', () => {
     expect(output.type).toBe('li')
     expect(output.props.className).toEqual('contact col-sm-12 detail selected')
 
-    const media = output.props.children
+    const [media, ] = output.props.children
     expect(media.type).toBe('div')
     expect(media.props.className).toBe('media')
 
@@ -60,7 +60,7 @@ describe('Contact component', () => {
     expect(output.type).toBe('li')
     expect(output.props.className).toEqual('contact col-md-6 mosaic')
 
-    const media = output.props.children
+    const [, media ] = output.props.children
     expect(media.type).toBe('div')
     expect(media.props.className).toBe('media')
 
