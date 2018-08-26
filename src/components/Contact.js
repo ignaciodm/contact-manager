@@ -1,6 +1,36 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+  contact: {
+    ':hover': {
+      borderColor: '#563d7c',
+      cursor: 'pointer',
+      backgroundColor: '#b2e7ff'
+    }
+  },
+  selected: {
+    background: '#b2e7ff'
+  },
+  detail: {
+    media: {
+      padding: 10,
+      borderBottom: '1px solid #ddd',
+      'img.media-object': {
+        width: 80,
+        borderRadius: 35
+      },
+      mediaBody: {
+        paddingTop: 12,
+        mediaDetail: {
+          color: '#dd1144'
+        }
+      }
+    }
+  }
+})
 
 export default class Contact extends Component {
   static propTypes = {
@@ -23,11 +53,13 @@ export default class Contact extends Component {
   classNames = () => {
     const { isSelected, detailMode } = this.props;
 
-    return classnames('contact', {
-      'col-md-6 mosaic': !detailMode,
-      'col-sm-12 detail': detailMode,
-      selected: isSelected
-    })
+    return classnames(
+      detailMode ? 'col-sm-12' : 'col-md-6',
+      css(styles.contact,
+        isSelected ? styles.selected : '',
+        detailMode ? styles.detail : ''
+      )
+    )
   }
 
   renderDetailContact = () => {

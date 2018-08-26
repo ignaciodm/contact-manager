@@ -1,15 +1,25 @@
 import React from 'react'
 import Button from 'react-bootstrap/lib/Button'
+import { StyleSheet, css } from 'aphrodite'
+
+const styles = StyleSheet.create({
+    button: {
+      padding: 10,
+      margin: 5,
+      float: 'right'
+    }
+  })
+
 
 class ListHeaderBar extends React.Component {
-  handleAddNewContactClick (event) {
+  handleAddNewContactClick = (event) => {
     event.preventDefault()
     event.stopPropagation()
 
     this.props.onAddNewContactClick()
   };
 
-  handleToggleViewClick (event) {
+  handleToggleViewClick = (event) => {
     event.preventDefault()
     event.stopPropagation()
 
@@ -22,8 +32,12 @@ class ListHeaderBar extends React.Component {
       // <SearchInput />
 
       <div className='row list-header-bar'>
-        <Button type='button' onClick={this.handleAddNewContactClick}>Add New Contact</Button>
-        <Button type='button' onClick={this.handleToggleViewClick}>ToggleView</Button>
+        <Button className={css(styles.button)} onClick={this.handleAddNewContactClick}>
+          Add New Contact
+        </Button>
+        <Button className={css(styles.button)} onClick={this.handleToggleViewClick}>
+          ToggleView
+        </Button>
       </div>
 
     )

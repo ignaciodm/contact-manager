@@ -3,6 +3,7 @@ import { createRenderer } from 'react-test-renderer/shallow'
 import ContactForm from './ContactForm'
 
 import asset1 from '../assets/faces/1.jpg'
+import { StyleSheetTestUtils } from 'aphrodite'
 
 const getTextContent = elem => {
   const children = Array.isArray(elem.props.children)
@@ -55,6 +56,14 @@ const setup = ({isEditing = true}) => {
 }
 
 describe('ContactForm component', () => {
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection()
+  })
+
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
+  })
+
   describe('Edit form', () => {
     it('edit initial render', () => {
       const { output } = setup({})

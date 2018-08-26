@@ -1,9 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Contact from './Contact'
+import { StyleSheet, css } from 'aphrodite'
+
+const styles = StyleSheet.create({
+  contactList: {
+    paddingTop: 10
+  }
+})
 
 const ContactList = ({ filteredContacts, selectedContact, detailMode, onEditContactClick }) => (
-  <ul className='media-list row contact-list'>
+  <ul className={`media-list row ${css(styles.contactList)}`}>
     {filteredContacts.map(contact =>
       <Contact
         key={contact.id}
@@ -14,9 +21,6 @@ const ContactList = ({ filteredContacts, selectedContact, detailMode, onEditCont
     )}
   </ul>
 )
-
-// TODO
-// probably shape can be type of Contact. Extend contact to selectedContact
 
 ContactList.propTypes = {
   filteredContacts: PropTypes.arrayOf(PropTypes.shape(Contact.propTypes.contact).isRequired).isRequired,

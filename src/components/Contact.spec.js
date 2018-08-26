@@ -3,6 +3,7 @@ import { createRenderer } from 'react-test-renderer/shallow'
 import Contact from './Contact'
 
 import asset1 from '../assets/faces/1.jpg'
+import { StyleSheetTestUtils } from 'aphrodite'
 
 const setup = ({detailMode = true, isSelected = true}) => {
   const props = {
@@ -35,13 +36,21 @@ const setup = ({detailMode = true, isSelected = true}) => {
 }
 
 describe('Contact component', () => {
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection()
+  })
+
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
+  })
+
   it('detail mode initial render', () => {
     const { output } = setup({})
 
     expect(output.type).toBe('li')
-    expect(output.props.className).toEqual('contact col-sm-12 detail selected')
+    expect(output.props.className).toEqual('col-sm-12 contact_1ky7x54-o_O-selected_ziahcm-o_O-detail_dg25w0')
 
-    const [media, ] = output.props.children
+    const [media] = output.props.children
     expect(media.type).toBe('div')
     expect(media.props.className).toBe('media')
 
@@ -58,7 +67,7 @@ describe('Contact component', () => {
     const { output } = setup({detailMode: false, isSelected: false})
 
     expect(output.type).toBe('li')
-    expect(output.props.className).toEqual('contact col-md-6 mosaic')
+    expect(output.props.className).toEqual('col-md-6 contact_1ky7x54')
 
     const [, media ] = output.props.children
     expect(media.type).toBe('div')

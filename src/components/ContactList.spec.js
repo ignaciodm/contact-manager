@@ -2,6 +2,7 @@ import React from 'react'
 import { createRenderer } from 'react-test-renderer/shallow'
 import ContactList from './ContactList'
 import Contact from './Contact'
+import { StyleSheetTestUtils } from 'aphrodite'
 
 import asset1 from '../assets/faces/1.jpg'
 
@@ -38,10 +39,17 @@ const setup = ({detailMode = true, isSelected = true}) => {
 }
 
 describe('ContactList component', () => {
+  beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection()
+  })
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection()
+  })
+
   it('should render ul', () => {
     const { output } = setup({})
     expect(output.type).toBe('ul')
-    expect(output.props.className).toEqual('media-list row contact-list')
+    expect(output.props.className).toEqual('media-list row contactList_1p1zqo2')
   })
 
   it('should render Contacts', () => {

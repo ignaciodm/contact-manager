@@ -6,7 +6,19 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel'
 import FormControl from 'react-bootstrap/lib/FormControl'
 import HelpBlock from 'react-bootstrap/lib/HelpBlock'
 import Button from 'react-bootstrap/lib/Button'
+import { StyleSheet, css } from 'aphrodite';
 
+const styles = StyleSheet.create({
+  button: {
+    margin: 5
+  },
+  btnPrimary: {
+    float: 'right'
+  },
+  btnSecondary: {
+    float: 'left'
+  }
+})
 function FieldGroup({ id, label, help, ...props }) {
   return (
     <FormGroup controlId={id}>
@@ -110,8 +122,8 @@ class ContactForm extends React.Component {
 
           <FormGroup>
             <Col smOffset={2} sm={10}>
-              <Button className="btn-primary" type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
-              <Button className="btn-secondary" type="button" onClick={this.handleCancel}>Cancel</Button>
+              <Button className={`btn-primary ${css([styles.button, styles.btnPrimary])}`} type="submit">{this.props.isEditing ? 'Update' : 'Add'} Contact</Button>
+              <Button className={`btn-secondary ${css([styles.button, styles.btnSecondary])}`} type="button" onClick={this.handleCancel}>Cancel</Button>
             </Col>
           </FormGroup>
         </form>
