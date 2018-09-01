@@ -50,7 +50,7 @@ const setup = ({isEditing = true}) => {
 
   const [cardHeader, cardBody] = output.props.children
   const [firstNameGroup, lastNameGroup, emailGroup, phoneGroup, buttonGroups] = cardBody.props.children
-  const [primaryButton] = buttonGroups.props.children.props.children
+  const [primaryButton, cancelButton] = buttonGroups.props.children.props.children
 
   return {
     props: props,
@@ -63,9 +63,13 @@ const setup = ({isEditing = true}) => {
     emailGroup: emailGroup,
     phoneGroup: phoneGroup,
     buttonGroups: buttonGroups,
-    primaryButton: primaryButton
+    primaryButton: primaryButton,
+    cancelButton: cancelButton,
   }
 }
+
+const setupEditForm = () => setup({isEditing: true})
+const setupNewForm = () => setup({isEditing: false})
 
 describe('ContactForm component', () => {
   beforeEach(() => {
@@ -78,26 +82,26 @@ describe('ContactForm component', () => {
 
   describe('render', () => {
     it('should renders a div', () => {
-      expect(setup({}).output.type).toBe('div')
+      expect(setupEditForm().output.type).toBe('div')
     })
 
     it('should renders proper classes', () => {
-      expect(setup({}).output.props.className).toEqual(expect.stringContaining('contact-form card row form'))
+      expect(setupEditForm().output.props.className).toEqual(expect.stringContaining('contact-form card row form'))
     })
   })
 
   describe('edit form mode', () => {
     it('should sets header title', () => {
-      expect(getTextContent(setup({}).cardHeader)).toBe('Edit Contact')
+      expect(getTextContent(setupEditForm().cardHeader)).toBe('Edit Contact')
     })
 
     it('should set a form as body' , () => {
-      const { cardBody } = setup({})
+      const { cardBody } = setupEditForm()
       expect(cardBody.type).toBe('form')
     })
 
     it('should set input values', () => {
-      const { firstNameGroup, lastNameGroup, emailGroup, phoneGroup} = setup({})
+      const { firstNameGroup, lastNameGroup, emailGroup, phoneGroup} = setupEditForm()
 
       expect(firstNameGroup.props.value).toBe(contact.firstName)
       expect(lastNameGroup.props.value).toBe(contact.lastName)
@@ -106,19 +110,19 @@ describe('ContactForm component', () => {
     })
 
     it('sets submit button text', () => {
-      const {primaryButton} = setup({})
+      const {primaryButton} = setupEditForm()
       expect(getTextContent(primaryButton)).toBe('Update Contact')
     })
   })
 
   describe('add new form', () => {
     it('should sets header title', () => {
-      const { cardHeader } =  setup({ isEditing: false })
+      const { cardHeader } = setupNewForm()
       expect(getTextContent(cardHeader)).toBe('Add Contact')
     })
 
     it('should set input values', () => {
-      const { firstNameGroup, lastNameGroup, emailGroup, phoneGroup} = setup({ isEditing: false })
+      const { firstNameGroup, lastNameGroup, emailGroup, phoneGroup} = setupNewForm()
 
       expect(firstNameGroup.props.value).toBe(newContact.firstName)
       expect(lastNameGroup.props.value).toBe(newContact.lastName)
@@ -127,24 +131,20 @@ describe('ContactForm component', () => {
     })
 
     it('sets submit button text', () => {
-      const {primaryButton} = setup({ isEditing: false })
+      const {primaryButton} = setupNewForm()
       expect(getTextContent(primaryButton)).toBe('Add Contact')
     })
   })
 
   it('onSubmit should call handleSubmit with contact', () => {
-    const { output, props } = setup({})
-    const [, cardBody] = output.props.children
+    const { cardBody, props } = setupEditForm()
 
     cardBody.props.onSubmit({preventDefault: jest.fn()})
     expect(props.onSubmit).toBeCalledWith(contact)
   })
 
   it('on cancel click should call onCancel', () => {
-    const { output, props } = setup({})
-    const [, cardBody] = output.props.children
-    const [, , , , buttonGroups] = cardBody.props.children
-    const [, cancelButton] = buttonGroups.props.children.props.children
+    const { cancelButton, props } = setupEditForm()
 
     cancelButton.props.onClick({preventDefault: jest.fn()})
     expect(props.onCancel).toBeCalled()
