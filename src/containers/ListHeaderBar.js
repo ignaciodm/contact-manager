@@ -2,14 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ListHeaderBar from '../components/ListHeaderBar'
 import { setEmptyContact, toggleListViewMode } from '../actions/index'
+import { DETAIL_LIST_MODE } from '../reducers/view'
 
 const mapStateToProps = (state) => {
   let view = state.view
-  let selectedContact = view.selectedContact
 
   return {
-    isEditing: selectedContact && selectedContact.id,
-    isAddingNewContact: selectedContact && !selectedContact.id
+    isOnDetailViewType: view.listMode === DETAIL_LIST_MODE
   }
 }
 

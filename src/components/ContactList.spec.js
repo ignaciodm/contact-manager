@@ -20,7 +20,7 @@ const setup = ({detailMode = true, isSelected = true}) => {
     filteredContacts: [contact],
     selectedContact: contact,
     detailMode: detailMode,
-    onEditContactClick: jest.fn()
+    onContactClick: jest.fn()
   }
 
   const renderer = createRenderer()

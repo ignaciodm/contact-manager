@@ -17,7 +17,7 @@ const setup = ({detailMode = true, isSelected = true}) => {
     },
     detailMode: detailMode,
     isSelected: isSelected,
-    onEditContactClick: jest.fn()
+    onClick: jest.fn()
   }
 
   const renderer = createRenderer()
@@ -82,10 +82,10 @@ describe('Contact component', () => {
     expect(mediaBody.props.className).toBe('media-body')
   })
 
-  it('li onCLick should call onEditContactClick', () => {
+  it('li onCLick should call onClick', () => {
     const { props, output } = setup({})
 
-    output.props.onClick({preventDefault: jest.fn(), stopPropagation: jest.fn()})
-    expect(props.onEditContactClick).toBeCalled()
+    output.props.onClick()
+    expect(props.onClick).toBeCalled()
   })
 })

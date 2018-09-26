@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onEditContactClick: contact => {
+    onContactClick: contact => {
       dispatch(setSelectedContact(contact))
     }
   }

@@ -37,15 +37,12 @@ export default class Contact extends Component {
     contact: PropTypes.object.isRequired,
     detailMode: PropTypes.bool.isRequired,
     isSelected: PropTypes.bool.isRequired,
-    onEditContactClick: PropTypes.func.isRequired, // TODO Instead of handle this, should try router
+    onClick: PropTypes.func.isRequired, // TODO Instead of handle this, should try router
     // deleteContact: PropTypes.func.isRequired
   }
 
-  handleEditClick = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.props.onEditContactClick(this.props.contact)
+  handleClick = () => {
+    this.props.onClick(this.props.contact)
   };
 
   state = {};
@@ -99,7 +96,7 @@ export default class Contact extends Component {
 
   render() {
     return (
-       <li className={this.classNames()} onClick={this.handleEditClick}>
+       <li className={this.classNames()} onClick={this.handleClick}>
          {this.renderDetailContact()}
          {this.renderMosaicContact()}
       </li>

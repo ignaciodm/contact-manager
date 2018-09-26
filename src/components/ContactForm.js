@@ -9,6 +9,9 @@ import Button from 'react-bootstrap/lib/Button'
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
+  form: {
+    paddingRight: 15
+  },
   button: {
     margin: 5
   },
@@ -58,7 +61,7 @@ class ContactForm extends React.Component {
     this.setState({contact: null});
   }
 
-  handleChange = (event, contactProperty) => {
+  handleChange = (contactProperty) => (event) => {
     let newContactState =  {...this.state.contact};
     newContactState[contactProperty] = event.currentTarget.value ;
     this.setState({contact: newContactState});
@@ -77,7 +80,7 @@ class ContactForm extends React.Component {
   render() {
 
     return (
-      <div className="contact-form card row">
+      <div className={`contact-form card row ${css(styles.form)}`}>
         <h4 className="text-center card-header">
           {this.props.isEditing ? 'Edit' : 'Add'} Contact
         </h4>
@@ -87,7 +90,7 @@ class ContactForm extends React.Component {
             type="text"
             label="First name"
             value={this.state.contact.firstName}
-            onChange={(event) => this.handleChange(event, 'firstName')}
+            onChange={this.handleChange('firstName')}
             required="true"
           />
 
@@ -96,7 +99,7 @@ class ContactForm extends React.Component {
             type="text"
             label="Last name"
             value={this.state.contact.lastName}
-            onChange={(event) => this.handleChange(event, 'lastName')}
+            onChange={this.handleChange('lastName')}
             required="true"
           />
 
@@ -106,7 +109,7 @@ class ContactForm extends React.Component {
             required="true"
             label="Email"
             value={this.state.contact.email}
-            onChange={(event) => this.handleChange(event, 'email')}
+            onChange={this.handleChange('email')}
             placeholder="name@example.com"
           />
 
@@ -115,7 +118,7 @@ class ContactForm extends React.Component {
             type="text"
             label="Telephone number"
             value={this.state.contact.tel}
-            onChange={(event) => this.handleChange(event, 'tel')}
+            onChange={this.handleChange('tel')}
             placeholder="123-456-789"
             required="true"
           />

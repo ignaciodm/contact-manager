@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const ContactList = ({ filteredContacts, selectedContact, detailMode, onEditContactClick }) => (
+const ContactList = ({ filteredContacts, selectedContact, detailMode, onContactClick }) => (
   <ul className={`media-list row ${css(styles.contactList)}`}>
     {filteredContacts.map(contact =>
       <Contact
@@ -17,7 +17,7 @@ const ContactList = ({ filteredContacts, selectedContact, detailMode, onEditCont
         contact={contact}
         isSelected={contact.id === (selectedContact && selectedContact.id)}
         detailMode={detailMode}
-        onEditContactClick={onEditContactClick} />
+        onClick={onContactClick} />
     )}
   </ul>
 )
@@ -26,7 +26,7 @@ ContactList.propTypes = {
   filteredContacts: PropTypes.arrayOf(PropTypes.shape(Contact.propTypes.contact).isRequired).isRequired,
   selectedContact: PropTypes.object,
   detailMode: PropTypes.bool.isRequired,
-  onEditContactClick: PropTypes.func.isRequired
+  onContactClick: PropTypes.func.isRequired
 }
 
 export default ContactList
