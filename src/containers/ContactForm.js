@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { editContact, addContact, unselectContact } from '../actions/index'
+import { editContact, addContact, unselectCurrentContact } from '../actions/index'
 import ContactForm from '../components/ContactForm'
 
 const mapStateToProps = (state) => {
@@ -19,10 +19,10 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(addContact(contact))
       }
 
-      dispatch(unselectContact())
+      dispatch(unselectCurrentContact())
     },
     onCancel: contact => {
-      dispatch(unselectContact())
+      dispatch(unselectCurrentContact())
     }
   }
 }

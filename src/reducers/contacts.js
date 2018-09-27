@@ -1,8 +1,4 @@
-import {
-  ADD_CONTACT,
-  DELETE_CONTACT,
-  EDIT_CONTACT
-} from '../constants/ActionTypes'
+import {handleActions} from 'redux-actions'
 
 import asset1 from '../assets/faces/1.jpg'
 import asset2 from '../assets/faces/2.jpg'
@@ -71,42 +67,37 @@ const initialState = [
   }
 ]
 
-export default function contacts (state = initialState, action) {
-  let contact = action.contact
+const contacts = handleActions({
+  ADD_CONTACT: (state, { payload: { contact } }) => {
+    const id = state.reduce((maxId, c) => Math.max(c.id, maxId), -1) + 1
+    return [
+      ...state,
+      {
+        id: id,
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        tel: contact.tel,
+        email: contact.email,
+        avatarUrl: (require(`../assets/faces/${id}.jpg`))
+      }
+    ]
+  },
+  DELETE_CONTACT: (state, { payload: { contact } }) => {
+    return state.filter(c => c.id !== contact.id )
+  },
+  EDIT_CONTACT: (state, { payload: { contact } }) => {
+    return state.map(c =>
+      c.id === contact.id
+        ? { ...c,
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        tel: contact.tel,
+        email: contact.email
+      }
+        : c
+    )
 
-  switch (action.type) {
-    case ADD_CONTACT:
-      let id = state.reduce((maxId, c) => Math.max(c.id, maxId), -1) + 1
-      return [
-        ...state,
-        {
-          id: id,
-          firstName: contact.firstName,
-          lastName: contact.lastName,
-          tel: contact.tel,
-          email: contact.email,
-          avatarUrl: (require(`../assets/faces/${id}.jpg`))
-        }
-      ]
+  },
+}, initialState)
 
-    case DELETE_CONTACT:
-      return state.filter(c =>
-        c.id !== contact.id
-      )
-
-    case EDIT_CONTACT:
-      return state.map(c =>
-        c.id === contact.id
-          ? { ...c,
-            firstName: contact.firstName,
-            lastName: contact.lastName,
-            tel: contact.tel,
-            email: contact.email
-          }
-          : c
-      )
-
-    default:
-      return state
-  }
-}
+export default contacts;

@@ -1,13 +1,40 @@
-import * as types from '../constants/ActionTypes'
+import {
+  ADD_CONTACT,
+  EDIT_CONTACT,
+  DELETE_CONTACT,
+  SET_SELECTED_CONTACT,
+  SET_EMPTY_CONTACT,
+  UNSELECT_CURRENT_CONTACT,
+  TOGGLE_LIST_VIEW_MODE } from '../constants/ActionTypes'
+
+import { createActions } from 'redux-actions'
 
 // CONTACT LIST ACTIONS
 
-export const addContact = contact => ({ type: types.ADD_CONTACT, contact })
-export const editContact = contact => ({ type: types.EDIT_CONTACT, contact })
-export const deleteContact = contact => ({ type: types.DELETE_CONTACT, contact })
+const createEmptyContact = () =>  ({
+  contact: {
+    firstName: '',
+    lastName: '',
+    tel: '',
+    email: ''
+  }
+  })
 
-// VIEW SELECTION ACTIONS
-export const setSelectedContact = contact => ({ type: types.SET_SELECTED_CONTACT, contact })
-export const setEmptyContact = () => ({ type: types.SET_EMPTY_CONTACT })
-export const unselectContact = () => ({ type: types.UNSELECT_CONTACT })
-export const toggleListViewMode = () => ({ type: types.TOGGLE_LIST_VIEW_MODE })
+export const {
+  addContact,
+  editContact,
+  deleteContact,
+  setSelectedContact,
+  setEmptyContact,
+  unselectCurrentContact,
+  toggleListViewMode
+  } = createActions({
+    SET_EMPTY_CONTACT: createEmptyContact,
+    SET_SELECTED_CONTACT: contact => ({contact}),
+    UNSELECT_CURRENT_CONTACT: contact => ({contact: null}),
+    ADD_CONTACT: contact => ({contact}),
+    EDIT_CONTACT: contact => ({contact}),
+    DELETE_CONTACT: contact => ({contact})
+    },
+    TOGGLE_LIST_VIEW_MODE
+);
